@@ -1,24 +1,26 @@
-FROM gudaoxuri/scala_2.11:latest
+FROM gudaoxuri/java:latest
 MAINTAINER gudaoxuri <i@sunisle.org>
 
 # Setup env
 ENV HADOOP_PREFIX /opt/hadoop
+ENV HADOOP_HOME $HADOOP_PREFIX
 ENV HADOOP_COMMON_HOME $HADOOP_PREFIX
 ENV HADOOP_CONF_DIR $HADOOP_PREFIX/etc/hadoop
+ENV PATH $PATH:$HADOOP_HOME/bin:$HADOOP_HOME/sbin
 ENV KEEP false
 
 RUN yum install -y which
 
 # Download hadoop
-RUN wget -q -O - http://mirrors.tuna.tsinghua.edu.cn/apache/hadoop/common/hadoop-2.9.0/hadoop-2.9.0.tar.gz | tar -xzf - -C /opt/ \
- && mv /opt/hadoop-2.9.0 /opt/hadoop
+RUN wget -q -O - http://mirrors.hust.edu.cn/apache/hadoop/common/hadoop-2.7.5/hadoop-2.7.5.tar.gz | tar -xzf - -C /opt/ \
+ && mv /opt/hadoop-2.7.5 /opt/hadoop
 
 RUN mkdir -p /data/hadoop/hdfs/nn \
  && mkdir -p /data/hadoop/hdfs/dn \
  && mkdir -p /data/hadoop/tmp
 
-COPY core-site.xml /opt/hadoop/etc/hadoop/core-site.xml
-COPY hdfs-site.xml /opt/hadoop/etc/hadoop/hdfs-site.xml
+COPY core-site.xml $HADOOP_HOME/etc/hadoop/core-site.xml
+COPY hdfs-site.xml $HADOOP_HOME/etc/hadoop/hdfs-site.xml
 COPY bootstrap_keep.sh /bin/bootstrap_keep.sh
 COPY bootstrap_ssh.sh /bin/bootstrap_ssh.sh
 COPY bootstrap_dfs.sh /bin/bootstrap_dfs.sh

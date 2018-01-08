@@ -6,6 +6,4 @@ source bootstrap_dfs.sh
 
 source bootstrap_hive.sh
 
-source bootstrap_spark.sh
-
 source bootstrap_keep.sh
