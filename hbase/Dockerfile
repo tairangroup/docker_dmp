@@ -3,12 +3,15 @@ MAINTAINER gudaoxuri <i@sunisle.org>
 
 # Setup env
 ENV HBASE_HOME /opt/hbase
-ENV PATH $PATH:$HBASE_HOME/bin
+ENV PATH $HBASE_HOME/bin:$PATH
 ENV KEEP false
+
+RUN echo "export HBASE_HOME=/opt/hbase" >> /etc/profile
+RUN echo "export PATH=$HBASE_HOME/bin:$PATH" >> /etc/profile
 
 # Download hbase
 RUN wget -q -O - http://mirrors.hust.edu.cn/apache/hbase/1.3.1/hbase-1.3.1-bin.tar.gz | tar -xzf - -C /opt/ \
- && mv /opt/hbase-1.3.1-bin /opt/hbase
+ && mv /opt/hbase-1.3.1 /opt/hbase
 
 COPY hbase-env.sh $HBASE_HOME/conf/
 COPY hbase-site.xml $HBASE_HOME/conf/
@@ -22,6 +25,6 @@ RUN cp /opt/phoenix/phoenix-4.13.1-HBase-1.3-server.jar /opt/hbase/lib
 COPY bootstrap_hbase.sh /bin/bootstrap_hbase.sh
 COPY bootstrap.sh /bin/bootstrap.sh
 
-EXPOSE 60010,60030,2181
+EXPOSE 60000 60010 60030
 
 ENTRYPOINT /bin/bootstrap.sh $KEEP

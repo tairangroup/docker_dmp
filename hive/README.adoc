@@ -1,0 +1,58 @@
+== Hive Environment
+
+*Based gudaoxuri/hdfs:latest*
+
+=== Features
+
+* SSH server & client ( Port: 22 User: root Password: 123456 )
+* Hadoop 2.7.x
+* Hive 2.3.x
+
+=== Examples
+
+Start MySQL :
+
+ docker run --name dmp_mysql -e MYSQL_ROOT_PASSWORD=123456 -d mysql
+
+Start Hive:
+
+ docker run --name hive -h hive -P -e KEEP=true --link dmp_mysql:mysql -d gudaoxuri/hive
+
+Operation：
+
+[source,shell]
+----
+Hive Home:/opt/hive/
+
+example:
+> cat>test_person.txt<<EOF
+tom 20
+jack    24
+nestor  29
+EOF
+> hdfs dfs -mkdir /tmp/hivetest/
+> hdfs dfs -put ./test_person.txt /tmp/hivetest/
+> hive
+CREATE EXTERNAL TABLE test_person(name STRING,age INT)ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t' LOCATION '/tmp/hivetest';
+select * from test_person;
+
+> beeline -u jdbc:hive2://localhost:10000
+select * from test_person;
+----
+
+=== Environments
+
+|===
+| Env | Default Value | Remark
+
+| TZ | Asia/Shanghai |
+| KEEP | false | true = always run
+|===
+
+=== Expose Ports
+
+|===
+| Port | Remark
+
+| 10000 | Service for programatically (Thrift/JDBC) connecting to Hive,ENV Variable HIVE_PORT
+|===

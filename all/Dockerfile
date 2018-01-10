@@ -21,6 +21,9 @@ RUN echo "export SPARK_HOME=/opt/spark" >> /etc/profile \
 RUN wget -q -O - http://mirrors.hust.edu.cn/apache/spark/spark-2.2.1/spark-2.2.1-bin-hadoop2.7.tgz | tar -xzf - -C /opt/ \
  && mv /opt/spark-2.2.1-bin-hadoop2.7 /opt/spark
 
+RUN mkdir -p /data/spark/data \
+ && mkdir -p /data/spark/logs
+
 COPY spark-env.sh $SPARK_HOME/conf/
 COPY bootstrap_spark.sh /bin/bootstrap_spark.sh
 COPY bootstrap.sh /bin/bootstrap.sh

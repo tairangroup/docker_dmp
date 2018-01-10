@@ -1,0 +1,57 @@
+== HDFS Environment
+
+*Based gudaoxuri/java:latest*
+
+=== Features
+
+* SSH server & client ( Port: 22 User: root Password: 123456 )
+* Hadoop 2.7.x
+
+=== Examples
+
+Start :
+
+ docker run --name hdfs -h hdfs -P -e KEEP=true -d gudaoxuri/hdfs
+
+Operation：
+
+[source,shell]
+----
+Hadoop Home:/opt/hadoop/
+
+example:
+hdfs dfs -mkdir /test
+hdfs dfs -put <localfile> /test/
+hdfs dfs -ls /test
+----
+
+=== Environments
+
+|===
+| Env | Default Value | Remark
+
+| TZ | Asia/Shanghai |
+| KEEP | false | true = always run
+|===
+
+=== Volumes
+
+|===
+| volume | Remark
+
+| /data/hadoop/hdfs/nn | Name node path
+| /data/hadoop/hdfs/dn | Data node path
+|===
+
+=== Expose Ports
+
+|===
+| Port | Remark
+
+| 9000 | File system metadata operations ``fs.default.name``
+| 50010 | Data transfer ``dfs.datanode.address``
+| 50020 | Metadata operations ``dfs.datanode.ipc.address``
+| 50070 | Web UI to look at current status of HDFS, explore file system ``dfs.http.address``
+| 50075 | DataNode WebUI to access the status, logs etc. ``dfs.datanode.http.address``
+| 50090 | Checkpoint for NameNode metadata ``dfs.secondary.http.address``
+|===

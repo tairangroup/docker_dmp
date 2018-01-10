@@ -1,0 +1,66 @@
+== Confluent Environment
+
+*Based gudaoxuri/hdfs:latest*
+
+=== Features
+
+* SSH server & client ( Port: 22 User: root Password: 123456 )
+* Hadoop 2.7.x
+* Confluent 4.x
+
+=== Examples
+
+Start ZK:
+
+ docker run --name dmp_zookeeper -p 2181:2181 -d zookeeper
+
+Start Confluent:
+
+ docker run --name confluent -h confluent -P -e KEEP=true --link dmp_zookeeper:zookeeper -d gudaoxuri/confluent
+
+Operation：
+
+[source,shell]
+----
+Hadoop Home:/opt/confluent/
+
+example:
+> kafka-avro-console-producer \
+         --broker-list localhost:9092 --topic test \
+         --property value.schema='{"type":"record","name":"myrecord","fields":[{"name":"f1","type":"string"}]}'
+> {"f1": "value1"}
+> {"f1": "value2"}
+> {"f1": "value3"}
+
+> kafka-avro-console-consumer --topic test \
+         --bootstrap-server localhost:9092 \
+         --from-beginning
+----
+
+=== Environments
+
+|===
+| Env | Default Value | Remark
+
+| TZ | Asia/Shanghai |
+| KEEP | false | true = always run
+|===
+
+=== Volumes
+
+|===
+| volume | Remark
+
+| /opt/confluent/share/java | jars
+|===
+
+=== Expose Ports
+
+|===
+| Port | Remark
+
+| 9092 | Kafka Service Port
+| 8081 | Schema Registry Port
+| 8082 | REST Proxy Port
+| 8083 | Kafka Connector Port
+|===

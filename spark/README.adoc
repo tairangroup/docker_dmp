@@ -1,0 +1,54 @@
+== Spark Environment
+
+*Based gudaoxuri/hdfs:latest , Depend gudaoxuri/scala_2.11:latest*
+
+=== Features
+
+* SSH server & client ( Port: 22 User: root Password: 123456 )
+* Hadoop 2.7.x
+* Spark 2.2.x
+
+=== Examples
+
+Start Spark:
+
+ docker run --name spark -h spark -P -e KEEP=true -d gudaoxuri/spark
+
+Operation：
+
+[source,shell]
+----
+Hadoop Home:/opt/spark/
+
+example:
+> run-example org.apache.spark.examples.SparkPi
+
+> spark-submit \
+  --class org.apache.spark.examples.SparkPi \
+  --master spark://spark:7077\
+  --deploy-mode cluster \
+  --driver-memory 512M \
+  --executor-memory 512M \
+  /opt/spark/examples/jars/spark-examples_2.11-2.2.1.jar \
+  1000
+----
+
+=== Environments
+
+|===
+| Env | Default Value | Remark
+
+| TZ | Asia/Shanghai |
+| KEEP | false | true = always run
+|===
+
+=== Expose Ports
+
+|===
+| Port | Remark
+
+| 4040 | ``REST API``
+| 7077 | ``SPARK_MASTER_PORT``
+| 8080 | ``SPARK_MASTER_WEBUI_PORT``
+| 8081 | ``SPARK_WORKER_WEBUI_PORT``
+|===

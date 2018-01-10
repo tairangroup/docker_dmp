@@ -1,0 +1,63 @@
+== HBase Environment
+
+*Based gudaoxuri/hdfs:latest*
+
+=== Features
+
+* SSH server & client ( Port: 22 User: root Password: 123456 )
+* Hadoop 2.7.x
+* HBase 1.3.x
+* Phoenix 4.13.x
+
+=== Examples
+
+Start ZK:
+
+ docker run --name dmp_zookeeper -p 2181:2181 -d zookeeper
+
+Start HBase:
+
+ docker run --name hbase -h hbase -P -e KEEP=true --link dmp_zookeeper:zookeeper -d gudaoxuri/hbase
+
+Operation：
+
+[source,shell]
+----
+Hadoop Home:/opt/hbase/
+
+example:
+> hbase shell
+create 'test', 'cf'
+list 'test'
+put 'test', 'row1', 'cf:a', 'value1'
+put 'test', 'row2', 'cf:b', 'value2'
+put 'test', 'row3', 'cf:c', 'value3'
+scan 'test'
+get 'test', 'row1'
+disable 'test'
+drop 'test'
+
+> /opt/phoenix/bin/sqlline.py zookeeper:2181
+!tables
+> /opt/phoenix/bin/sqlline.py zookeeper:2181 /opt/phoenix/examples/STOCK_SYMBOL.sql
+select * from stock_symbol;
+----
+
+=== Environments
+
+|===
+| Env | Default Value | Remark
+
+| TZ | Asia/Shanghai |
+| KEEP | false | true = always run
+|===
+
+=== Expose Ports
+
+|===
+| Port | Remark
+
+| 60000 | ``hbase.master.port``
+| 60010 | The port for the HBase­Master web UI. Set to -1 if you do not want the info server to run. ``hbase.master.info.port``
+| 60030 | ``hbase.regionserver.info.port``
+|===

@@ -10,10 +10,10 @@
     </property>
     <property>
         <name>javax.jdo.option.ConnectionUserName</name>
-        <value>hive</value>
+        <value>root</value>
     </property>
     <property>
         <name>javax.jdo.option.ConnectionPassword</name>
-        <value>hive</value>
+        <value>123456</value>
     </property>
 </configuration>

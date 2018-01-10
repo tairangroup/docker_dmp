@@ -6,8 +6,14 @@ ENV HADOOP_PREFIX /opt/hadoop
 ENV HADOOP_HOME $HADOOP_PREFIX
 ENV HADOOP_COMMON_HOME $HADOOP_PREFIX
 ENV HADOOP_CONF_DIR $HADOOP_PREFIX/etc/hadoop
-ENV PATH $PATH:$HADOOP_HOME/bin:$HADOOP_HOME/sbin
+ENV PATH $HADOOP_HOME/bin:$HADOOP_HOME/sbin:$PATH
 ENV KEEP false
+
+RUN echo "export HADOOP_PREFIX=/opt/hadoop" >> /etc/profile
+RUN echo "export HADOOP_HOME=$HADOOP_PREFIX" >> /etc/profile
+RUN echo "export HADOOP_COMMON_HOME=$HADOOP_PREFIX" >> /etc/profile
+RUN echo "export HADOOP_CONF_DIR=$HADOOP_PREFIX/etc/hadoop" >> /etc/profile
+RUN echo "export PATH=$HADOOP_HOME/bin:$HADOOP_HOME/sbin:$PATH" >> /etc/profile
 
 RUN yum install -y which
 
@@ -32,6 +38,6 @@ RUN ssh-keygen -t rsa -P '' -f ~/.ssh/id_rsa \
 
 EXPOSE 9000 50010 50020 50070 50075 50090
 
-VOLUME ["/data/hadoop/hdfs/dn", "/data/hadoop/hdfs/nn"]
+VOLUME ["/data/hadoop/hdfs/nn", "/data/hadoop/hdfs/dn"]
 
 ENTRYPOINT /bin/bootstrap.sh $KEEP
