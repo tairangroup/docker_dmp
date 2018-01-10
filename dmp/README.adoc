@@ -1,0 +1,85 @@
+== DMP Environment
+
+*Based gudaoxuri/spark:latest , Depend gudaoxuri/confluent:latest gudaoxuri/hive:latest gudaoxuri/hbase:latest*
+
+=== Features
+
+* SSH server & client ( Port: 22 User: root Password: 123456 )
+* Hadoop 2.7.x
+* Confluent 4.x
+* Hive 2.3.x
+* HBase 1.3.x
+* Phoenix 4.13.x
+* Spark 2.2.x
+
+=== Examples
+
+Start ZK:
+
+ docker run --name dmp_zookeeper -p 2181:2181 -d zookeeper
+
+Start MySQL :
+
+ docker run --name dmp_mysql -e MYSQL_ROOT_PASSWORD=123456 -d mysql
+
+Start ALL :
+
+ docker run --name dmp -h dmp -P -e KEEP=true --link dmp_mysql:mysql --link dmp_zookeeper:zookeeper -d gudaoxuri/dmp
+
+Operation：
+
+[source,shell]
+----
+Hadoop Home:/opt/
+
+example:
+
+----
+
+=== Environments
+
+|===
+| Env | Default Value | Remark
+
+| TZ | Asia/Shanghai |
+| KEEP | false | true = always run
+|===
+
+=== Volumes
+
+|===
+| volume | Remark
+
+| /data/hadoop/hdfs/nn | Name node path
+| /data/hadoop/hdfs/dn | Data node path
+| /opt/confluent/share/java | jars
+|===
+
+=== Expose Ports
+
+|===
+| Port | Remark
+
+| 9092 | Kafka Service Port
+| 8081 | Schema Registry Port
+| 8082 | REST Proxy Port
+| 8083 | Kafka Connector Port
+
+| 10000 | Service for programatically (Thrift/JDBC) connecting to Hive,ENV Variable HIVE_PORT
+
+| 60000 | ``hbase.master.port``
+| 60010 | The port for the HBase­Master web UI. Set to -1 if you do not want the info server to run. ``hbase.master.info.port``
+| 60030 | ``hbase.regionserver.info.port``
+
+| 4040 | ``REST API``
+| 7077 | ``SPARK_MASTER_PORT``
+| 18080 | ``SPARK_MASTER_WEBUI_PORT``
+| 18081 | ``SPARK_WORKER_WEBUI_PORT``
+
+| 9000 | File system metadata operations ``fs.default.name``
+| 50010 | Data transfer ``dfs.datanode.address``
+| 50020 | Metadata operations ``dfs.datanode.ipc.address``
+| 50070 | Web UI to look at current status of HDFS, explore file system ``dfs.http.address``
+| 50075 | DataNode WebUI to access the status, logs etc. ``dfs.datanode.http.address``
+| 50090 | Checkpoint for NameNode metadata ``dfs.secondary.http.address``
+|===

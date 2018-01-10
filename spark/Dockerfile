@@ -4,10 +4,10 @@ MAINTAINER gudaoxuri <i@sunisle.org>
 FROM gudaoxuri/hdfs:latest
 
 COPY --from=scala_env /root/.bashrc /root/.bashrc
-COPY --from=scala_env /opt/env/scala /opt/env/
+COPY --from=scala_env /opt/env/scala /opt/env/scala
 
 RUN echo "export SCALA_HOME=/opt/env/scala" >> /etc/profile \
- && echo "export PATH=$SCALA_HOME/bin:$PATH" >> /etc/profile
+ && echo "export PATH=/opt/env/scala/bin:$PATH" >> /etc/profile
 
 # Setup env
 ENV SPARK_HOME /opt/spark
@@ -25,6 +25,6 @@ COPY spark-env.sh $SPARK_HOME/conf/
 COPY bootstrap_spark.sh /bin/bootstrap_spark.sh
 COPY bootstrap.sh /bin/bootstrap.sh
 
-EXPOSE 4040 7077 8080 8081
+EXPOSE 4040 7077 18080 18081
 
 ENTRYPOINT /bin/bootstrap.sh $KEEP

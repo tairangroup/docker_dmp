@@ -18,7 +18,7 @@ COPY schema-registry.properties $CONFLUENT_HOME/etc/schema-registry/schema-regis
 
 COPY bootstrap_confluent.sh /bin/bootstrap_confluent.sh
 
-EXPOSE 9092 8083 8082 8081
+EXPOSE 9092 8081 8082 8083
 
 VOLUME ["$CONFLUENT_HOME/share/java"]
 
