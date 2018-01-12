@@ -20,11 +20,15 @@ Start ZK:
 
 Start MySQL :
 
- docker run --name dmp_mysql -e MYSQL_ROOT_PASSWORD=123456 -d mysql
+ docker run --name dmp_mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 -d mysql
 
-Start ALL :
+Start Redis:
 
- docker run --name dmp -h dmp -P -e KEEP=true --link dmp_mysql:mysql --link dmp_zookeeper:zookeeper -d gudaoxuri/dmp
+ docker run --name dmp_redis -p 6379:6379 -d redis
+
+Start DMP :
+
+ docker run --name dmp -h dmp -P -e KEEP=true --link dmp_mysql:mysql --link dmp_zookeeper:zookeeper --link dmp_redis:redis -d gudaoxuri/dmp
 
 Operation：
 
@@ -34,6 +38,65 @@ Hadoop Home:/opt/
 
 example:
 
+# HDFS
+hdfs dfs -mkdir /test
+hdfs dfs -ls /
+
+# Hive
+> cat>test_person.txt<<EOF
+tom 20
+jack    24
+nestor  29
+EOF
+> hdfs dfs -mkdir /tmp/hivetest/
+> hdfs dfs -put ./test_person.txt /tmp/hivetest/
+> hive
+CREATE EXTERNAL TABLE test_person(name STRING,age INT)ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t' LOCATION '/tmp/hivetest';
+select * from test_person;
+
+> beeline -u jdbc:hive2://localhost:10000
+select * from test_person;
+
+# HBase
+> hbase shell
+create 'test', 'cf'
+list 'test'
+put 'test', 'row1', 'cf:a', 'value1'
+put 'test', 'row2', 'cf:b', 'value2'
+put 'test', 'row3', 'cf:c', 'value3'
+scan 'test'
+get 'test', 'row1'
+disable 'test'
+drop 'test'
+
+> /opt/phoenix/bin/sqlline.py zookeeper:2181
+!tables
+> /opt/phoenix/bin/sqlline.py zookeeper:2181 /opt/phoenix/examples/STOCK_SYMBOL.sql
+select * from stock_symbol;
+
+# Spark
+> run-example org.apache.spark.examples.SparkPi
+
+> spark-submit \
+  --class org.apache.spark.examples.SparkPi \
+  --master spark://dmp:7077\
+  --deploy-mode cluster \
+  --driver-memory 512M \
+  --executor-memory 512M \
+  /opt/spark/examples/jars/spark-examples_2.11-2.2.1.jar \
+  1000
+
+# Confluent
+> kafka-avro-console-producer \
+         --broker-list localhost:9092 --topic test \
+         --property value.schema='{"type":"record","name":"myrecord","fields":[{"name":"f1","type":"string"}]}'
+> {"f1": "value1"}
+> {"f1": "value2"}
+> {"f1": "value3"}
+
+> kafka-avro-console-consumer --topic test \
+         --bootstrap-server localhost:9092 \
+         --from-beginning
 ----
 
 === Environments

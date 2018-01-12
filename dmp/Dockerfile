@@ -12,6 +12,7 @@ COPY --from=confluent_env /bin/bootstrap_confluent.sh /bin/bootstrap_confluent.s
 COPY --from=hive_env /opt/hive /opt/hive
 COPY --from=hive_env /bin/bootstrap_hive.sh /bin/bootstrap_hive.sh
 COPY --from=hbase_env /opt/hbase /opt/hbase
+COPY --from=hbase_env /opt/phoenix /opt/phoenix
 COPY --from=hbase_env /bin/bootstrap_hbase.sh /bin/bootstrap_hbase.sh
 
 ENV CONFLUENT_HOME /opt/confluent
