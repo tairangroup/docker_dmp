@@ -16,7 +16,10 @@ Start ZK:
 
 Start Confluent:
 
- docker run --name confluent -h confluent -P -e KEEP=true --link dmp_zookeeper:zookeeper -d gudaoxuri/confluent
+ docker run --name confluent -h confluent \
+    -p 9092:9092 -p 8081:8081 -p 8082:8082 -p 8083:8083  \
+    -e KEEP=true -e KAFKA_ADVERTISED_HOST_NAME=127.0.0.1 \
+    --link dmp_zookeeper:zookeeper -d gudaoxuri/confluent
 
 Operation：
 
@@ -44,6 +47,9 @@ example:
 
 | TZ | Asia/Shanghai |
 | KEEP | false | true = always run
+| KAFKA_ADVERTISED_HOST_NAME | HOSTNAME |
+| KAFKA_ADVERTISED_PORT | 9092 |
+| KAFKA_PORT | 9092 |
 |===
 
 === Volumes

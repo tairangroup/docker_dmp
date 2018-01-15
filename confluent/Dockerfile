@@ -13,10 +13,11 @@ RUN echo "export CONFLUENT_HOME=/opt/confluent" >> /etc/profile \
 RUN wget -q -O - http://packages.confluent.io/archive/4.0/confluent-oss-4.0.0-2.11.tar.gz | tar -xzf - -C /opt/ \
  && mv /opt/confluent-4.0.0 /opt/confluent
 
-COPY server.properties $CONFLUENT_HOME/etc/kafka/server.properties
+COPY server.properties.template $CONFLUENT_HOME/etc/kafka/server.properties.template
 COPY schema-registry.properties $CONFLUENT_HOME/etc/schema-registry/schema-registry.properties
 
 COPY bootstrap_confluent.sh /bin/bootstrap_confluent.sh
+COPY bootstrap.sh /bin/bootstrap.sh
 
 EXPOSE 9092 8081 8082 8083
 

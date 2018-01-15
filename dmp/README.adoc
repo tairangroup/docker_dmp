@@ -28,7 +28,10 @@ Start Redis:
 
 Start DMP :
 
- docker run --name dmp -h dmp -P -e KEEP=true --link dmp_mysql:mysql --link dmp_zookeeper:zookeeper --link dmp_redis:redis -d gudaoxuri/dmp
+ docker run --name dmp -h dmp -P -p 4000-4010:4000-4010 -p 9092:9092 \
+    --link dmp_mysql:mysql --link dmp_zookeeper:zookeeper --link dmp_redis:redis \
+    -e KEEP=true -e KAFKA_ADVERTISED_HOST_NAME=127.0.0.1 \
+    -d -v <c:/Users/X/docker_data/dmp>:/opt/workspaces gudaoxuri/dmp
 
 Operation：
 
@@ -106,6 +109,9 @@ select * from stock_symbol;
 
 | TZ | Asia/Shanghai |
 | KEEP | false | true = always run
+| KAFKA_ADVERTISED_HOST_NAME | HOSTNAME |
+| KAFKA_ADVERTISED_PORT | 9092 |
+| KAFKA_PORT | 9092 |
 |===
 
 === Volumes

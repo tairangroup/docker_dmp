@@ -168,3 +168,8 @@ group.initial.rebalance.delay.ms=0
 # that additional support metrics will be collected and reported.
 #
 confluent.support.customer.id=anonymous
+
+
+advertised.host.name={{KAFKA_ADVERTISED_HOST_NAME}}
+port={{KAFKA_PORT}}
+advertised.port={{KAFKA_ADVERTISED_PORT}}
