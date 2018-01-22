@@ -28,7 +28,7 @@ Start Redis:
 
 Start DMP :
 
- docker run --name dmp -h dmp -P -p 4000-4010:4000-4010 -p 9092:9092 \
+ docker run --name dmp -h dmp -P -p 4000-4010:4000-4010 -p 9092:9092 -p 8765:8765 \
     --link dmp_mysql:mysql --link dmp_zookeeper:zookeeper --link dmp_redis:redis \
     -e KEEP=true -e KAFKA_ADVERTISED_HOST_NAME=127.0.0.1 \
     -d -v <c:/Users/X/docker_data/dmp>:/opt/workspaces gudaoxuri/dmp
@@ -139,6 +139,7 @@ select * from stock_symbol;
 | 60000 | ``hbase.master.port``
 | 60010 | The port for the HBase­Master web UI. Set to -1 if you do not want the info server to run. ``hbase.master.info.port``
 | 60030 | ``hbase.regionserver.info.port``
+| 8765 | HBase Query Server default port
 
 | 4040 | ``REST API``
 | 7077 | ``SPARK_MASTER_PORT``

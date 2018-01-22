@@ -17,7 +17,7 @@ Start ZK:
 
 Start HBase:
 
- docker run --name hbase -h hbase -P -e KEEP=true --link dmp_zookeeper:zookeeper -d gudaoxuri/hbase
+ docker run --name hbase -h hbase -P -p 8765:8765 -e KEEP=true --link dmp_zookeeper:zookeeper -d gudaoxuri/hbase
 
 Operation：
 
@@ -41,6 +41,9 @@ drop 'test'
 !tables
 > /opt/phoenix/bin/sqlline.py zookeeper:2181 /opt/phoenix/examples/STOCK_SYMBOL.sql
 select * from stock_symbol;
+
+> /opt/phoenix/bin/sqlline-thin.py http://localhost:8765
+select * from system.catalog;
 ----
 
 === Environments
@@ -60,4 +63,5 @@ select * from stock_symbol;
 | 60000 | ``hbase.master.port``
 | 60010 | The port for the HBase­Master web UI. Set to -1 if you do not want the info server to run. ``hbase.master.info.port``
 | 60030 | ``hbase.regionserver.info.port``
+| 8765 | HBase Query Server default port
 |===

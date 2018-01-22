@@ -22,6 +22,8 @@ RUN wget -q -O - https://mirrors.tuna.tsinghua.edu.cn/apache/phoenix/apache-phoe
 
 RUN cp /opt/phoenix/phoenix-4.13.1-HBase-1.3-server.jar /opt/hbase/lib
 
+COPY hbase-site.xml.phoenix /opt/phoenix/bin/hbase-site.xml
+
 COPY bootstrap_hbase.sh /bin/bootstrap_hbase.sh
 COPY bootstrap.sh /bin/bootstrap.sh
 
