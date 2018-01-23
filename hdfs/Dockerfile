@@ -32,6 +32,8 @@ COPY bootstrap_ssh.sh /bin/bootstrap_ssh.sh
 COPY bootstrap_dfs.sh /bin/bootstrap_dfs.sh
 COPY bootstrap.sh /bin/bootstrap.sh
 
+RUN chmod +x /bin/bootstrap*
+
 RUN ssh-keygen -t rsa -P '' -f ~/.ssh/id_rsa \
  && cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys \
  && chmod 0600 ~/.ssh/authorized_keys
