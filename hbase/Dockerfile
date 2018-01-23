@@ -27,6 +27,8 @@ COPY hbase-site.xml.phoenix /opt/phoenix/bin/hbase-site.xml
 COPY bootstrap_hbase.sh /bin/bootstrap_hbase.sh
 COPY bootstrap.sh /bin/bootstrap.sh
 
+RUN chmod +x /bin/bootstrap*
+
 EXPOSE 60000 60010 60030
 
 ENTRYPOINT /bin/bootstrap.sh $KEEP

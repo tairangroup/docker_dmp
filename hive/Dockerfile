@@ -21,6 +21,8 @@ RUN  mv $HIVE_HOME/conf/hive-log4j2.properties.template $HIVE_HOME/conf/hive-log
 COPY bootstrap_hive.sh /bin/bootstrap_hive.sh
 COPY bootstrap.sh /bin/bootstrap.sh
 
+RUN chmod +x /bin/bootstrap*
+
 EXPOSE 10000
 
 ENTRYPOINT /bin/bootstrap.sh $KEEP

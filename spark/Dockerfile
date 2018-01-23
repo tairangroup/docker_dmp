@@ -25,6 +25,8 @@ COPY spark-env.sh $SPARK_HOME/conf/
 COPY bootstrap_spark.sh /bin/bootstrap_spark.sh
 COPY bootstrap.sh /bin/bootstrap.sh
 
+RUN chmod +x /bin/bootstrap*
+
 EXPOSE 4040 7077 18080 18081
 
 ENTRYPOINT /bin/bootstrap.sh $KEEP

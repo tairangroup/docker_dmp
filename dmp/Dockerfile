@@ -33,6 +33,8 @@ RUN cp $HIVE_HOME/conf/hive-site.xml $SPARK_HOME/conf/ \
 COPY bootstrap_all.sh /bin/bootstrap_all.sh
 COPY bootstrap.sh /bin/bootstrap.sh
 
+RUN chmod +x /bin/bootstrap*
+
 EXPOSE 9092 8083 8082 8081 10000 60000 60010 60030
 
 ENTRYPOINT /bin/bootstrap.sh $KEEP
