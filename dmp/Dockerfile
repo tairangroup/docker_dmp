@@ -28,6 +28,7 @@ RUN echo "export CONFLUENT_HOME=/opt/confluent" >> /etc/profile \
 
 RUN cp $HIVE_HOME/conf/hive-site.xml $SPARK_HOME/conf/ \
  && cp $HIVE_HOME/conf/hive-log4j2.properties $SPARK_HOME/conf/
+ && cp $HIVE_HOME/lib/mysql-connector-java-5.1.45-bin.jar $SPARK_HOME/jars/
 
 COPY bootstrap_all.sh /bin/bootstrap_all.sh
 COPY bootstrap.sh /bin/bootstrap.sh

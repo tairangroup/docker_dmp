@@ -8,6 +8,6 @@ cat /opt/confluent/etc/kafka/server.properties.template | sed \
   -e "s|{{KAFKA_PORT}}|${KAFKA_PORT:-9092}|g" \
    > /opt/confluent/etc/kafka/server.properties
 
-nohup /opt/confluent/bin/kafka-server-start /opt/confluent/etc/kafka/server.properties &
+nohup /opt/confluent/bin/kafka-server-start /opt/confluent/etc/kafka/server.properties >/dev/null 2>&1 &
 sleep 5
-nohup /opt/confluent/bin/schema-registry-start /opt/confluent/etc/schema-registry/schema-registry.properties &
+nohup /opt/confluent/bin/schema-registry-start /opt/confluent/etc/schema-registry/schema-registry.properties >/dev/null 2>&1 &

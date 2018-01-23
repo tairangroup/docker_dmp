@@ -7,6 +7,9 @@
 /opt/hadoop/bin/hdfs dfs -chmod -R 777 /user/hive/tmp
 /opt/hadoop/bin/hdfs dfs -chmod -R 777 /user/hive/log
 
-/opt/hive/bin/schematool -dbType mysql -initSchema hive hive
+if [ ! -f /tmp/is_restart ]; then
+ /opt/hive/bin/schematool -dbType mysql -initSchema hive hive
+fi
 
-nohup /opt/hive/bin/hiveserver2 &
+nohup /opt/hive/bin/hive --service metastore >/dev/null 2>&1 &
+nohup /opt/hive/bin/hiveserver2 >/dev/null 2>&1 &

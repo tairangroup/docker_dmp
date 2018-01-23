@@ -4,4 +4,4 @@
 
 sleep 10
 
-nohup /opt/phoenix/bin/queryserver.py start &
+nohup /opt/phoenix/bin/queryserver.py start >/dev/null 2>&1 &
