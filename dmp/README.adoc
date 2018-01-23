@@ -28,10 +28,12 @@ Start Redis:
 
 Start DMP :
 
- docker run --name dmp -h dmp -P -p 4000-4010:4000-4010 -p 9092:9092 -p 8765:8765 \
+ docker run --name dmp -h dmp -P -p 4000-4010:4000-4010 -p 9092:9092 -p 8765:8765 -p 10000:10000 \
     --link dmp_mysql:mysql --link dmp_zookeeper:zookeeper --link dmp_redis:redis \
     -e KEEP=true -e KAFKA_ADVERTISED_HOST_NAME=127.0.0.1 \
-    -d -v <c:/Users/X/docker_data/dmp>:/opt/workspaces gudaoxuri/dmp
+    -v c:/Users/i/docker_data/dmp/workspaces:/opt/workspaces \
+    -v c:/Users/i/docker_data/dmp/confluent_jars:java \
+    -d gudaoxuri/dmp
 
 Operation：
 

@@ -10,4 +10,8 @@ cat /opt/confluent/etc/kafka/server.properties.template | sed \
 
 nohup /opt/confluent/bin/kafka-server-start /opt/confluent/etc/kafka/server.properties >/dev/null 2>&1 &
 sleep 5
+nohup /opt/confluent/bin/kafka-rest-start /opt/confluent/etc/kafka-rest/kafka-rest.properties >/dev/null 2>&1 &
+sleep 5
 nohup /opt/confluent/bin/schema-registry-start /opt/confluent/etc/schema-registry/schema-registry.properties >/dev/null 2>&1 &
+sleep 5
+nohup /opt/confluent/bin/connect-distributed /opt/confluent/etc/kafka/connect-distributed.properties >/dev/null 2>&1 &
