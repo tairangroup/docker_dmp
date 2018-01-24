@@ -54,5 +54,7 @@ select * from test_person;
 |===
 | Port | Remark
 
+| 22 | SSH Port
+
 | 10000 | Service for programatically (Thrift/JDBC) connecting to Hive,ENV Variable HIVE_PORT
 |===

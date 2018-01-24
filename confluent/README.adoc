@@ -65,6 +65,8 @@ example:
 |===
 | Port | Remark
 
+| 22 | SSH Port
+
 | 9092 | Kafka Service Port
 | 8081 | Schema Registry Port
 | 8082 | REST Proxy Port

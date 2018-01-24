@@ -48,6 +48,8 @@ hdfs dfs -ls /test
 |===
 | Port | Remark
 
+| 22 | SSH Port
+
 | 9000 | File system metadata operations ``fs.default.name``
 | 50010 | Data transfer ``dfs.datanode.address``
 | 50020 | Metadata operations ``dfs.datanode.ipc.address``

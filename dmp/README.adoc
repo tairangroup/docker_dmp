@@ -28,11 +28,17 @@ Start Redis:
 
 Start DMP :
 
- docker run --name dmp -h dmp -P -p 4000-4010:4000-4010 -p 9092:9092 -p 8765:8765 -p 10000:10000 \
+ docker run --name dmp -h dmp \
+    -P -p 4000-4010:4000-4010 \
+    -p 222:22 \
+    -p 9092:9092 -p 8081:8081 -p 8082:8082 -p 8083:8083 \
+    -p 10000:10000 \
+    -p 8765:8765 \
+    -p 4040:4040 -p 7077:7077 -p 18080:18080 -p 18081:18081 \
+    -p 9000:9000 -p 50010:50010 -p 50020:50020 -p 50070:50070 -p 50075:50075 \
     --link dmp_mysql:mysql --link dmp_zookeeper:zookeeper --link dmp_redis:redis \
-    -e KEEP=true -e KAFKA_ADVERTISED_HOST_NAME=127.0.0.1 \
-    -v c:/Users/i/docker_data/dmp/workspaces:/opt/workspaces \
-    -v c:/Users/i/docker_data/dmp/confluent_jars:java \
+    -e KEEP=true -e KAFKA_ADVERTISED_HOST_NAME=10.200.131.25 \
+    -v /data/docker_data/dmp/workspaces:/opt/workspaces \
     -d gudaoxuri/dmp
 
 Operation：
@@ -130,6 +136,8 @@ select * from stock_symbol;
 
 |===
 | Port | Remark
+
+| 22 | SSH Port
 
 | 9092 | Kafka Service Port
 | 8081 | Schema Registry Port
