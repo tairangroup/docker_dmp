@@ -30,8 +30,8 @@ RUN ln -s $HADOOP_HOME/etc/hadoop/core-site.xml $KYLIN_HOME/hadoop-conf/core-sit
 RUN ln -s $HADOOP_HOME/etc/hadoop/hdfs-site.xml $KYLIN_HOME/hadoop-conf/hdfs-site.xml
 RUN ln -s $HADOOP_HOME/etc/hadoop/yarn-site.xml $KYLIN_HOME/hadoop-conf/yarn-site.xml
 
-RUN ln -s $HBASE_HOME/conf/ $KYLIN_HOME/hadoop-conf/hbase-site.xml
-RUN cp $HIVE_HOME/conf/ $KYLIN_HOME/hadoop-conf/hive-site.xml
+RUN ln -s $HBASE_HOME/conf/hbase-site.xml $KYLIN_HOME/hadoop-conf/hbase-site.xml
+RUN cp $HIVE_HOME/conf/hive-site.xml $KYLIN_HOME/hadoop-conf/hive-site.xml
 # RUN vi $KYLIN_HOME/hadoop-conf/hive-site.xml (change "hive.execution.engine" value from "tez" to "mr")
 
 RUN cp -r $SPARK_HOME/*  $KYLIN_HOME/spark
