@@ -31,7 +31,7 @@ Start DMP :
  docker run --name dmp -h dmp \
     -P -p 4000-4010:4000-4010 \
     -p 222:22 \
-    -p 9092:9092 -p 8081:8081 -p 8082:8082 -p 8083:8083 \
+    -p 9092:9092 \
     -p 10000:10000 \
     -p 8765:8765 \
     -p 4040:4040 -p 7077:7077 -p 18080:18080 -p 18081:18081 \
@@ -140,9 +140,6 @@ select * from stock_symbol;
 | 22 | SSH Port
 
 | 9092 | Kafka Service Port
-| 8081 | Schema Registry Port
-| 8082 | REST Proxy Port
-| 8083 | Kafka Connector Port
 
 | 10000 | Service for programatically (Thrift/JDBC) connecting to Hive,ENV Variable HIVE_PORT
 
