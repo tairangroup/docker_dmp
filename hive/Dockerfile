@@ -1,4 +1,4 @@
-FROM gudaoxuri/hdfs:latest
+FROM ztzjut/hadoop:latest
 MAINTAINER gudaoxuri <i@sunisle.org>
 
 # Setup env
