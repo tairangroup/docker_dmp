@@ -5,4 +5,4 @@ if [ ! -f /tmp/is_restart ]; then
  touch /tmp/is_restart
 fi
 
-/opt/hadoop/sbin/start-dfs.sh
+/opt/hadoop/sbin/start-all.sh

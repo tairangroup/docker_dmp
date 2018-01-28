@@ -27,6 +27,10 @@ RUN mkdir -p /data/hadoop/hdfs/nn \
 
 COPY core-site.xml $HADOOP_HOME/etc/hadoop/core-site.xml
 COPY hdfs-site.xml $HADOOP_HOME/etc/hadoop/hdfs-site.xml
+COPY hadoop-env.sh $HADOOP_HOME/etc/hadoop/hadoop-env.sh
+COPY mapred-site.xml $HADOOP_HOME/etc/hadoop/mapred-site.xml
+COPY yarn-site.xml $HADOOP_HOME/etc/hadoop/yarn-site.xml
+
 COPY bootstrap_keep.sh /bin/bootstrap_keep.sh
 COPY bootstrap_ssh.sh /bin/bootstrap_ssh.sh
 COPY bootstrap_dfs.sh /bin/bootstrap_dfs.sh
@@ -38,7 +42,7 @@ RUN ssh-keygen -t rsa -P '' -f ~/.ssh/id_rsa \
  && cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys \
  && chmod 0600 ~/.ssh/authorized_keys
 
-EXPOSE 9000 50010 50020 50070 50075 50090
+EXPOSE 9000 50010 50020 50070 50075 50090 8088
 
 VOLUME ["/data/hadoop/hdfs/nn", "/data/hadoop/hdfs/dn"]
 
