@@ -1,7 +1,7 @@
 FROM gudaoxuri/scala_2.11:latest AS scala_env
 MAINTAINER gudaoxuri <i@sunisle.org>
 
-FROM gudaoxuri/hdfs:latest
+FROM ztzjut/hadoop:latest
 
 COPY --from=scala_env /root/.bashrc /root/.bashrc
 COPY --from=scala_env /opt/env/scala /opt/env/scala
@@ -18,8 +18,14 @@ RUN echo "export SPARK_HOME=/opt/spark" >> /etc/profile \
  && echo "export PATH=$SPARK_HOME/sbin:$SPARK_HOME/bin:$PATH" >> /etc/profile
 
 # Download spark
-RUN wget -q -O - http://mirrors.hust.edu.cn/apache/spark/spark-2.2.1/spark-2.2.1-bin-hadoop2.7.tgz | tar -xzf - -C /opt/ \
- && mv /opt/spark-2.2.1-bin-hadoop2.7 /opt/spark
+RUN wget -q -O - https://archive.apache.org/dist/spark/spark-2.1.1/spark-2.1.1-bin-hadoop2.7.tgz | tar -xzf - -C /opt/ \
+ && mv /opt/spark-2.1.1-bin-hadoop2.7 /opt/spark
+
+#COPY spark-2.1.1-bin-hadoop2.7.tgz /opt/
+#RUN tar -xzf /opt/spark-2.1.1-bin-hadoop2.7.tgz -C /opt/
+#RUN ls /opt/
+#RUN mv /opt/spark-2.1.1-bin-hadoop2.7 /opt/spark
+
 
 COPY spark-env.sh $SPARK_HOME/conf/
 COPY bootstrap_spark.sh /bin/bootstrap_spark.sh

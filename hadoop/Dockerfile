@@ -6,6 +6,8 @@ ENV HADOOP_PREFIX /opt/hadoop
 ENV HADOOP_HOME $HADOOP_PREFIX
 ENV HADOOP_COMMON_HOME $HADOOP_PREFIX
 ENV HADOOP_CONF_DIR $HADOOP_PREFIX/etc/hadoop
+ENV YARN_HOME $HADOOP_PREFIX
+ENV YARN_CONF_DIR ${YARN_HOME}/etc/hadoop
 ENV PATH $HADOOP_HOME/bin:$HADOOP_HOME/sbin:$PATH
 ENV KEEP false
 
@@ -13,6 +15,8 @@ RUN echo "export HADOOP_PREFIX=/opt/hadoop" >> /etc/profile
 RUN echo "export HADOOP_HOME=$HADOOP_PREFIX" >> /etc/profile
 RUN echo "export HADOOP_COMMON_HOME=$HADOOP_PREFIX" >> /etc/profile
 RUN echo "export HADOOP_CONF_DIR=$HADOOP_PREFIX/etc/hadoop" >> /etc/profile
+RUN echo "export YARN_HOME=$HADOOP_PREFIX" >> /etc/profile
+RUN echo "export YARN_CONF_DIR=${YARN_HOME}/etc/hadoop" >> /etc/profile
 RUN echo "export PATH=$HADOOP_HOME/bin:$HADOOP_HOME/sbin:$PATH" >> /etc/profile
 
 RUN yum install -y which
@@ -27,7 +31,6 @@ RUN mkdir -p /data/hadoop/hdfs/nn \
 
 COPY core-site.xml $HADOOP_HOME/etc/hadoop/core-site.xml
 COPY hdfs-site.xml $HADOOP_HOME/etc/hadoop/hdfs-site.xml
-COPY hadoop-env.sh $HADOOP_HOME/etc/hadoop/hadoop-env.sh
 COPY mapred-site.xml $HADOOP_HOME/etc/hadoop/mapred-site.xml
 COPY yarn-site.xml $HADOOP_HOME/etc/hadoop/yarn-site.xml
 
