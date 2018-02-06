@@ -1,2 +1,34 @@
-== KYLIN Environment
+== Kylin Environment
 
+*Based ztzjut/hadoop:latest*
+
+=== Features
+
+* SSH server & client ( Port: 22 User: root Password: 123456 )
+* Hadoop 2.7.x
+* kylin 2.2
+* spark 2.1.1
+* hive 2.3.2
+* hbase 1.3
+
+=== Examples
+
+Start ZK:
+
+ docker run --name dmp_zookeeper -p 2181:2181 -d zookeeper
+
+Start mysql:
+ docker run --name dmp_mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 -d mysql
+
+Start Kylin:
+ docker run --name kylin -h kylin -P -p 50070:50070 -p 8088:8088 -p 7070:7070  \
+ -p 18080:18080 --link dmp_zookeeper:zookeeper --link dmp_mysql:mysql -e KEEP=true \
+ ztzjut/kylin
+
+
+
+Operation：
+
+ http://localhost:7070/kylin
+ user:ADMIN
+ passwd:KYLIN
