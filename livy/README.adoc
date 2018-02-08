@@ -42,4 +42,5 @@ Livy Home:/opt/livy/
 | 8998 | ``LIVY_REST_PORT``
 | 18080 | ``SPARK_MASTER_WEBUI_PORT``
 | 18081 | ``SPARK_WORKER_WEBUI_PORT``
+
 |===

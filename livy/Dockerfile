@@ -1,4 +1,4 @@
-FROM gudaoxuri/spark:latest
+FROM tairangroup/spark:latest
 MAINTAINER gudaoxuri <i@sunisle.org>
 
 # Setup env
