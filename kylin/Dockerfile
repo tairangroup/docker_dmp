@@ -24,13 +24,13 @@ RUN echo "export HIVE_HOME=/opt/hive" >> /etc/profile \
 
 
 # copy kylin
-RUN wget -q -O - http://mirrors.shu.edu.cn/apache/kylin/apache-kylin-2.2.0/apache-kylin-2.2.0-bin-hbase1x.tar.gz | tar -xzf - -C /opt/ \
- && mv /opt/apache-kylin-2.2.0-bin-hbase1x /opt/kylin
+#RUN wget -q -O - http://mirrors.shu.edu.cn/apache/kylin/apache-kylin-2.2.0/apache-kylin-2.2.0-bin-hbase1x.tar.gz | tar -xzf - -C /opt/ \
+# && mv /opt/apache-kylin-2.2.0-bin-hbase1x /opt/kylin
 
-#COPY apache-kylin-2.2.0-bin-hbase1x.tar.gz /opt
-#RUN tar -xzf /opt/apache-kylin-2.2.0-bin-hbase1x.tar.gz -C /opt/
-#RUN ls /opt/
-#RUN mv /opt/apache-kylin-2.2.0-bin /opt/kylin
+COPY apache-kylin-2.2.0-bin-hbase1x.tar.gz /opt
+RUN tar -xzf /opt/apache-kylin-2.2.0-bin-hbase1x.tar.gz -C /opt/
+RUN ls /opt/
+RUN mv /opt/apache-kylin-2.2.0-bin /opt/kylin
 
 RUN mkdir $KYLIN_HOME/hadoop-conf
 RUN ln -s /opt/hadoop/etc/hadoop/core-site.xml $KYLIN_HOME/hadoop-conf/core-site.xml
