@@ -9,6 +9,8 @@ FROM tairangroup/spark:latest AS spark_env
 
 FROM tairangroup/kylin:latest AS kylin_env
 
+FROM tairangroup/livy:latest AS livy_env
+
 COPY --from=confluent_env /opt/confluent /opt/confluent
 COPY --from=confluent_env /bin/bootstrap_confluent.sh /bin/bootstrap_confluent.sh
 COPY --from=hive_env /opt/hive /opt/hive
@@ -18,19 +20,23 @@ COPY --from=hbase_env /opt/phoenix /opt/phoenix
 COPY --from=hbase_env /bin/bootstrap_hbase.sh /bin/bootstrap_hbase.sh
 COPY --from=spark_env /opt/spark /opt/spark
 COPY --from=spark_env /bin/bootstrap_spark.sh /bin/bootstrap_spark.sh
+COPY --from=kylin_env /opt/kylin /opt/kylin
+COPY --from=kylin_env /bin/bootstrap_kylin.sh /bin/bootstrap_kylin.sh
 
 ENV CONFLUENT_HOME /opt/confluent
 ENV HIVE_HOME /opt/hive
 ENV HBASE_HOME /opt/hbase
 ENV SPARK_HOME /opt/spark
-ENV PATH $CONFLUENT_HOME/bin:$HIVE_HOME/bin:$HBASE_HOME/bin:$SPARK_HOME/bin:$PATH
+ENV KYLIN_HOME /opt/kylin
+ENV PATH $CONFLUENT_HOME/bin:$HIVE_HOME/bin:$HBASE_HOME/bin:$SPARK_HOME/bin:$KYLIN_HOME/bin:$PATH
 ENV KEEP false
 
 RUN echo "export CONFLUENT_HOME=/opt/confluent" >> /etc/profile \
  && echo "export HIVE_HOME=/opt/hive" >> /etc/profile \
  && echo "export HBASE_HOME=/opt/hbase" >> /etc/profile \
  && echo "export SPARK_HOME=/opt/spark" >> /etc/profile \
- && echo "export PATH=$CONFLUENT_HOME/bin:$HIVE_HOME/bin:$HBASE_HOME/bin:$SPARK_HOME/bin:$PATH" >> /etc/profile
+ && echo "export KYLIN_HOME=/opt/kylin" >> /etc/profile \
+ && echo "export PATH=$CONFLUENT_HOME/bin:$HIVE_HOME/bin:$HBASE_HOME/bin:$SPARK_HOME/bin:$KYLIN_HOME/bin:$PATH" >> /etc/profile
 
 RUN cp $HIVE_HOME/conf/hive-site.xml $SPARK_HOME/conf/ \
  && cp $HIVE_HOME/conf/hive-log4j2.properties $SPARK_HOME/conf/ \

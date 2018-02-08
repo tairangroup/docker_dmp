@@ -12,14 +12,10 @@ RUN echo "export LIVY_HOME=/opt/livy" >> /etc/profile \
 # install unzip
 RUN yum install -y unzip zip
 
-# get permission
-RUN sudo su
-
 # Download livy
-RUN wget -q -O livy-0.5.0-incubating-bin.zip http://mirrors.tuna.tsinghua.edu.cn/apache/incubator/livy/0.5.0-incubating/livy-0.5.0-incubating-bin.zip
-
-# config livy
-RUN unzip /livy-0.5.0-incubating-bin.zip -d /opt/ \
+RUN sudo su \
+ && wget -q -O livy-0.5.0-incubating-bin.zip http://mirrors.tuna.tsinghua.edu.cn/apache/incubator/livy/0.5.0-incubating/livy-0.5.0-incubating-bin.zip \
+ && unzip /livy-0.5.0-incubating-bin.zip -d /opt/ \
  && mv /opt/livy-0.5.0-incubating-bin /opt/livy \
  && mkdir /opt/livy/logs \
  && cp $LIVY_HOME/conf/log4j.properties.template $LIVY_HOME/conf/log4j.properties \
