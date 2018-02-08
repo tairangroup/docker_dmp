@@ -7,11 +7,15 @@
     </property>
     <property>
         <name>hadoop.tmp.dir</name>
-        <value>file:/data/hadoop/tmp</value>
+        <value>/data/hadoop/tmp</value>
     </property>
     <property>
         <name>hadoop.proxyuser.root.hosts</name>
         <value>*</value>
+    </property>
+    <property>
+        <name>hadoop.native.lib</name>
+        <value>false</value>
     </property>
     <property>
         <name>hadoop.proxyuser.root.groups</name>

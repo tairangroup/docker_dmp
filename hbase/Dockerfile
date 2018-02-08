@@ -1,5 +1,5 @@
-FROM gudaoxuri/hdfs:latest
-MAINTAINER gudaoxuri <i@sunisle.org>
+FROM ztzjut/hadoop:latest
+MAINTAINER ztzjut <i@sunisle.org>
 
 # Setup env
 ENV HBASE_HOME /opt/hbase
