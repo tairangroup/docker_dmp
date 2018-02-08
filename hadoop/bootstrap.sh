@@ -6,8 +6,8 @@ echo "==========================================="
 source bootstrap_ssh.sh
 
 echo "==========================================="
-echo "================ Start HDFS ==============="
+echo "================ Start Hadoop ==============="
 echo "==========================================="
-source bootstrap_dfs.sh
+source bootstrap_hadoop.sh
 
 source bootstrap_keep.sh
