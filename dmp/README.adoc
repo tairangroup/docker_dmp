@@ -110,6 +110,32 @@ select * from stock_symbol;
 > kafka-avro-console-consumer --topic test \
          --bootstrap-server localhost:9092 \
          --from-beginning
+
+# Kylin
+打开浏览器，输入http://localhost:7070
+账密：ADMIN:KYLIN
+1. 选择project：learn-kylin
+2. 选择cube：   kylin_sales_cube  点击 action -> build 进行构建cube -> 进入Monitor界面查看状态
+3. 执行sql查询： build成功后，-> Insight，输入sql语句
+    得到fact table所缓存的列——均为dimension的主key、measure中所需计算的字段。
+    -> select * from kylin_sales
+    各个时间段内的销售额及购买量：
+    -> select part_dt, sum(price) as total_selled, count(distinct seller_id) as sellers
+       from kylin_sales
+       group by part_dt
+       order by part_dt
+# Kylin stream
+1. 往队列  kylin_streaming_topic 添加数据
+> kafka-console-producer \
+         --broker-list localhost:9092 --topic kylin_streaming_topic \
+> {"country":"CANADA","amount":28.410708132590624,"qty":6,"currency":"USD","order_time":1518054870159,"category":"Other","device":"Andriod","user":{"gender":"Female","id":"696ff071-20fa-444c-a029-07f92f06cabc","age":27}}
+> {"country":"CHINA","amount":59.28096379181497,"qty":6,"currency":"USD","order_time":1518054870169,"category":"ELECTRONIC","device":"Other","user":{"gender":"Male","id":"1e3a9bc1-e4ac-4869-810a-e7d01381b7c8","age":26}}
+
+2. 选择cube：   kylin_streaming_cube  点击 action -> build 进行构建cube -> 进入Monitor界面查看状态
+3. 执行sql查询： build成功后，-> Insight，输入sql语句
+
+   select minute_start, count(*), sum(amount), sum(qty) from streaming_sales_table group by minute_start order by minute_start
+
 ----
 
 === Environments
