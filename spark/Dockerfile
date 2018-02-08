@@ -1,7 +1,7 @@
 FROM gudaoxuri/scala_2.11:latest AS scala_env
 MAINTAINER gudaoxuri <i@sunisle.org>
 
-FROM ztzjut/hadoop:latest
+FROM tairangroup/hadoop:latest
 
 COPY --from=scala_env /root/.bashrc /root/.bashrc
 COPY --from=scala_env /opt/env/scala /opt/env/scala

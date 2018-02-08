@@ -36,7 +36,7 @@ COPY yarn-site.xml $HADOOP_HOME/etc/hadoop/yarn-site.xml
 
 COPY bootstrap_keep.sh /bin/bootstrap_keep.sh
 COPY bootstrap_ssh.sh /bin/bootstrap_ssh.sh
-COPY bootstrap_dfs.sh /bin/bootstrap_dfs.sh
+COPY bootstrap_hadoop.sh /bin/bootstrap_hadoop.sh
 COPY bootstrap.sh /bin/bootstrap.sh
 
 RUN chmod +x /bin/bootstrap*

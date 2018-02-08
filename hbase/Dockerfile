@@ -1,4 +1,4 @@
-FROM ztzjut/hadoop:latest
+FROM tairangroup/hadoop:latest
 MAINTAINER ztzjut <i@sunisle.org>
 
 # Setup env
