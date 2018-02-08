@@ -17,7 +17,7 @@ Start ZK:
 Start Confluent:
 
  docker run --name confluent -h confluent \
-    -p 9092:9092 -p 8081:8081 -p 8082:8082 -p 8083:8083  \
+    -p 9092:9092 \
     -e KEEP=true -e KAFKA_ADVERTISED_HOST_NAME=127.0.0.1 \
     --link dmp_zookeeper:zookeeper -d gudaoxuri/confluent
 
@@ -65,8 +65,7 @@ example:
 |===
 | Port | Remark
 
+| 22 | SSH Port
+
 | 9092 | Kafka Service Port
-| 8081 | Schema Registry Port
-| 8082 | REST Proxy Port
-| 8083 | Kafka Connector Port
 |===

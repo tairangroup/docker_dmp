@@ -60,6 +60,8 @@ select * from system.catalog;
 |===
 | Port | Remark
 
+| 22 | SSH Port
+
 | 60000 | ``hbase.master.port``
 | 60010 | The port for the HBase­Master web UI. Set to -1 if you do not want the info server to run. ``hbase.master.info.port``
 | 60030 | ``hbase.regionserver.info.port``
