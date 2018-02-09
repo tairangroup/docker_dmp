@@ -15,7 +15,7 @@
 
 Start ZK:
 
- docker run --name dmp_zookeeper -p 2181:2181 -d zookeeper
+docker run --name dmp_zookeeper -p 2181:2181 -d zookeeper
 
 Start mysql:
  docker run --name dmp_mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 -d mysql

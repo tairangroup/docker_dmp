@@ -1,11 +1,13 @@
 = DMP POC Environment
 
-include::./hdfs/README.adoc[]
+include::./hadoop/README.adoc[]
 
 include::./hive/README.adoc[]
 
 include::./hbase/README.adoc[]
 
 include::./spark/README.adoc[]
+
+include::./kylin/README.adoc[]
 
 include::./confluent/README.adoc[]
