@@ -12,6 +12,7 @@
 * Phoenix 4.13.x
 * Spark 2.2.x
 * Kylin 2.2.x
+* Livy 0.5.x
 
 === Examples
 
@@ -44,6 +45,7 @@ Start DMP :
     -p 8765:8765 \
     -p 8088:8088 \
     -p 7070:7070 \
+    -p 8998:8998 \
     -p 4040:4040 -p 7077:7077 -p 18080:18080 -p 18081:18081 \
     -p 9000:9000 -p 50010:50010 -p 50020:50020 -p 50070:50070 -p 50075:50075 \
     --link dmp_mysql:mysql --link dmp_zookeeper:zookeeper --link dmp_redis:redis \
@@ -144,6 +146,33 @@ select * from stock_symbol;
 
    select minute_start, count(*), sum(amount), sum(qty) from streaming_sales_table group by minute_start order by minute_start
 
+# Livy
+usage batch session :
+1. Set up the Headers : key -> Content-Type, value -> application/json
+2. Create batch session : POST/
+   > Set up the URL : http://10.200.131.25:8998/batches
+   > Set up the Body : such as :
+   {
+   	"name": "storage-rds",
+   	"file": "/storage/rds/storage-rds-1.0.0-SNAPSHOT-jar-with-dependencies.jar",
+   	"className": "com.tairanchina.csp.dmp.components.storage.rds.RDSMain",
+   	"args": ["-k","10.200.131.25:9092",
+   		"-t","dmp.source.api-visit",
+   		 "-c","visit"
+   	],
+   	"driverMemory": "512M",
+   	"driverCores": 2,
+   	"executorMemory": "512M",
+   	"executorCores": 2,
+   	"numExecutors": 10
+   }
+3. Check the status : GET/
+   > Set up the URL : http://10.200.131.25:8998/batches/{batchId}/state
+4. Delete the batch session : DELETE/
+   > Set up the URL : http://10.200.131.25:8998/batches/{batchId}
+
+
+
 ----
 
 === Environments
@@ -188,6 +217,8 @@ select * from stock_symbol;
 | 7077 | ``SPARK_MASTER_PORT``
 | 18080 | ``SPARK_MASTER_WEBUI_PORT``
 | 18081 | ``SPARK_WORKER_WEBUI_PORT``
+
+| 8998 | ``LIVY_REST_PORT``
 
 | 9000 | File system metadata operations ``fs.default.name``
 | 50010 | Data transfer ``dfs.datanode.address``
