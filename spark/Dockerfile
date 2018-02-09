@@ -33,6 +33,6 @@ COPY bootstrap.sh /bin/bootstrap.sh
 
 RUN chmod +x /bin/bootstrap*
 
-EXPOSE 4040 7077 18080 18081
+EXPOSE 4040 7077 8080 8081
 
 ENTRYPOINT /bin/bootstrap.sh $KEEP

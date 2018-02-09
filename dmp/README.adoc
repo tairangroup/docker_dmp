@@ -26,6 +26,13 @@ Start Redis:
 
  docker run --name dmp_redis -p 6379:6379 -d redis
 
+Start ES With SQL:
+
+ docker run --name dmp_es -p 9200:9200 -e "ES_JAVA_OPTS=-Xms256m -Xmx256m" -d elasticsearch
+ docker exec -it dmp_es bash
+ > /bin/elasticsearch-plugin install https://github.com/NLPchina/elasticsearch-sql/releases/download/5.6.7.0/elasticsearch-sql-5.6.7.0.zip
+ docker restart dmp_es
+
 Start DMP :
 
  docker run --name dmp -h dmp \
