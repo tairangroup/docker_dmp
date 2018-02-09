@@ -1,6 +1,6 @@
 == DMP Environment
 
-*Based gudaoxuri/spark:latest , Depend gudaoxuri/confluent:latest gudaoxuri/hive:latest gudaoxuri/hbase:latest*
+*Based tairangroup/kylin:latest , Depend tairangroup/spark:latest tairangroup/confluent:latest tairangroup/hive:latest tarrangroup/hbase:latest*
 
 === Features
 
@@ -11,6 +11,7 @@
 * HBase 1.3.x
 * Phoenix 4.13.x
 * Spark 2.2.x
+* Kylin 2.2.x
 
 === Examples
 

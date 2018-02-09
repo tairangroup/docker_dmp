@@ -1,6 +1,6 @@
 == Spark Environment
 
-*Based gudaoxuri/hdfs:latest , Depend gudaoxuri/scala_2.11:latest*
+*Based tairangroup/hadoop:latest , Depend gudaoxuri/scala_2.11:latest*
 
 === Features
 

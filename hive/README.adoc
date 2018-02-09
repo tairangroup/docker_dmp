@@ -1,6 +1,6 @@
 == Hive Environment
 
-*Based gudaoxuri/hdfs:latest*
+*Based tairangroup/hadoop:latest*
 
 === Features
 
