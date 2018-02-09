@@ -1,6 +1,6 @@
 == HBase Environment
 
-*Based gudaoxuri/hdfs:latest*
+*Based tairangroup/hadoop:latest*
 
 === Features
 
@@ -17,7 +17,7 @@ Start ZK:
 
 Start HBase:
 
- docker run --name hbase -h hbase -P -p 8765:8765 -e KEEP=true --link dmp_zookeeper:zookeeper -d gudaoxuri/hbase
+ docker run --name hbase -h hbase -P -p 8765:8765 -e KEEP=true --link dmp_zookeeper:zookeeper -d tairangroup/hbase
 
 Operation：
 

@@ -1,6 +1,6 @@
 == Kylin Environment
 
-*Based ztzjut/hadoop:latest*
+*Based tairangroup/hadoop:latest*
 
 === Features
 
