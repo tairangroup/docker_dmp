@@ -1,6 +1,6 @@
 == DMP Environment
 
-*Based tairangroup/kylin:latest , Depend tairangroup/spark:latest tairangroup/confluent:latest tairangroup/hive:latest tarrangroup/hbase:latest*
+*Based tairangroup/kylin:latest , Depend tairangroup/spark:latest tairangroup/confluent:latest tairangroup/hive:latest tairangroup/hbase:latest*
 
 === Features
 
