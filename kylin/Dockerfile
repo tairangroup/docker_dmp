@@ -18,7 +18,7 @@ RUN echo "export HIVE_HOME=/opt/hive" >> /etc/profile \
 
 # copy kylin
 RUN wget -q -O - http://mirrors.shu.edu.cn/apache/kylin/apache-kylin-2.2.0/apache-kylin-2.2.0-bin-hbase1x.tar.gz | tar -xzf - -C /opt/ \
- && mv /opt/apache-kylin-2.2.0-bin-hbase1x /opt/kylin
+ && mv /opt/apache-kylin-2.2.0-bin /opt/kylin
 
 #COPY apache-kylin-2.2.0-bin-hbase1x.tar.gz /opt
 #RUN tar -xzf /opt/apache-kylin-2.2.0-bin-hbase1x.tar.gz -C /opt/
