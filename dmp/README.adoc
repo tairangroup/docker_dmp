@@ -49,7 +49,7 @@ Start DMP :
     -p 4040:4040 -p 7077:7077 -p 18080:18080 -p 18081:18081 \
     -p 9000:9000 -p 50010:50010 -p 50020:50020 -p 50070:50070 -p 50075:50075 \
     --link dmp_mysql:mysql --link dmp_zookeeper:zookeeper --link dmp_redis:redis \
-    -e KEEP=true -e KAFKA_ADVERTISED_HOST_NAME=10.200.131.25 \
+    -e KEEP=true -e KAFKA_ADVERTISED_HOST_NAME=dmp \
     -v /data/docker_data/dmp/workspaces:/opt/workspaces \
     -d tairangroup/dmp
 

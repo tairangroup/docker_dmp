@@ -3,6 +3,7 @@ MAINTAINER gudaoxuri <i@sunisle.org>
 
 # Setup env
 ENV CONFLUENT_HOME /opt/confluent
+ENV KAFKA_HOME /opt/confluent
 ENV PATH $CONFLUENT_HOME/bin:$PATH
 ENV KEEP false
 
@@ -16,7 +17,6 @@ RUN wget -q -O - http://packages.confluent.io/archive/4.0/confluent-oss-4.0.0-2.
 
 #COPY confluent-oss-4.0.0-2.11.tar.gz /opt/
 #RUN tar -xzf /opt/confluent-oss-4.0.0-2.11.tar.gz -C /opt/
-#RUN ls /opt/
 #RUN mv /opt/confluent-4.0.0 /opt/confluent
 
 COPY server.properties.template $CONFLUENT_HOME/etc/kafka/server.properties.template

@@ -21,6 +21,7 @@ COPY --from=spark_env /bin/bootstrap_spark.sh /bin/bootstrap_spark.sh
 
 
 ENV CONFLUENT_HOME /opt/confluent
+ENV KAFKA /opt/confluent
 ENV HIVE_HOME /opt/hive
 ENV HBASE_HOME /opt/hbase
 ENV SPARK_HOME /opt/spark
@@ -28,7 +29,8 @@ ENV LIVY_HOME /opt/livy
 ENV PATH $CONFLUENT_HOME/bin:$HIVE_HOME/bin:$HBASE_HOME/bin:$SPARK_HOME/bin:$LIVY_HOME/bin:$PATH
 ENV KEEP false
 
-RUN echo "export CONFLUENT_HOME=/opt/confluent" >> /etc/profile \
+RUN echo "export KAFKA_HOME=/opt/confluent" >> /etc/profile \
+ && echo "export CONFLUENT_HOME=/opt/confluent" >> /etc/profile \
  && echo "export HIVE_HOME=/opt/hive" >> /etc/profile \
  && echo "export HBASE_HOME=/opt/hbase" >> /etc/profile \
  && echo "export SPARK_HOME=/opt/spark" >> /etc/profile \
