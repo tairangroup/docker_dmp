@@ -26,15 +26,19 @@ echo "==========================================="
 source bootstrap_spark.sh
 
 echo "==========================================="
-echo "================ Start Kylin =============="
+echo "================ Start Livy =============="
 echo "==========================================="
-source bootstrap_kylin.sh
+source bootstrap_livy.sh
 
 echo "==========================================="
 echo "================ Start Confluent =========="
 echo "==========================================="
 source bootstrap_confluent.sh
 
+echo "==========================================="
+echo "================ Start Kylin =============="
+echo "==========================================="
+source bootstrap_kylin.sh
 
 source bootstrap_all.sh
 
