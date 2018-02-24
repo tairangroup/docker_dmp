@@ -21,7 +21,7 @@ COPY --from=spark_env /bin/bootstrap_spark.sh /bin/bootstrap_spark.sh
 
 
 ENV CONFLUENT_HOME /opt/confluent
-ENV KAFKA /opt/confluent
+ENV KAFKA_HOME /opt/confluent
 ENV HIVE_HOME /opt/hive
 ENV HBASE_HOME /opt/hbase
 ENV SPARK_HOME /opt/spark
