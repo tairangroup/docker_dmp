@@ -1,6 +1,6 @@
 == DMP Environment
 
-*Based tairangroup/kylin:latest , Depend tairangroup/spark:latest tairangroup/confluent:latest tairangroup/hive:latest tarrangroup/hbase:latest*
+*Based tairangroup/kylin:latest , Depend tairangroup/spark:latest tairangroup/confluent:latest tairangroup/hive:latest tairangroup/hbase:latest*
 
 === Features
 
@@ -44,9 +44,10 @@ Start DMP :
     -p 10000:10000 \
     -p 8765:8765 \
     -p 8088:8088 \
+    -p 8042:8042 \
     -p 7070:7070 \
     -p 8998:8998 \
-    -p 4040:4040 -p 7077:7077 -p 18080:18080 -p 18081:18081 \
+    -p 4040:4040 -p 7077:7077 -p 8080:8080 -p 8081:8081 \
     -p 9000:9000 -p 50010:50010 -p 50020:50020 -p 50070:50070 -p 50075:50075 \
     --link dmp_mysql:mysql --link dmp_zookeeper:zookeeper --link dmp_redis:redis \
     -e KEEP=true -e KAFKA_ADVERTISED_HOST_NAME=dmp \

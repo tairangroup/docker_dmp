@@ -56,7 +56,6 @@ RUN cp $HIVE_HOME/conf/hive-site.xml $SPARK_HOME/conf/ \
  && cp $HIVE_HOME/lib/mysql-connector-java-5.1.45-bin.jar $SPARK_HOME/jars/
 
 COPY livy.conf $LIVY_HOME/conf/
-COPY bootstrap_livy.sh /bin/bootstrap_livy.sh
 
 COPY bootstrap_all.sh /bin/bootstrap_all.sh
 COPY bootstrap.sh /bin/bootstrap.sh
