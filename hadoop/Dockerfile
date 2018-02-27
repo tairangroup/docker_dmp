@@ -22,8 +22,8 @@ RUN echo "export PATH=$HADOOP_HOME/bin:$HADOOP_HOME/sbin:$PATH" >> /etc/profile
 RUN yum install -y which
 
 # Download hadoop
-RUN wget -q -O - http://mirrors.hust.edu.cn/apache/hadoop/common/hadoop-2.7.5/hadoop-2.7.5.tar.gz | tar -xzf - -C /opt/ \
- && mv /opt/hadoop-2.7.5 /opt/hadoop
+RUN wget -q -O - http://mirrors.hust.edu.cn/apache/hadoop/common/hadoop-2.6.5/hadoop-2.6.5.tar.gz | tar -xzf - -C /opt/ \
+ && mv /opt/hadoop-2.6.5 /opt/hadoop
 
 RUN mkdir -p /data/hadoop/hdfs/nn \
  && mkdir -p /data/hadoop/hdfs/dn \
