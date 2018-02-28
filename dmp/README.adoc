@@ -148,7 +148,7 @@ select * from stock_symbol;
    select minute_start, count(*), sum(amount), sum(qty) from streaming_sales_table group by minute_start order by minute_start
 
 # Livy
-usage batch session :
+Usage batch session :
 1. Set up the Headers : key -> Content-Type, value -> application/json
 2. Create batch session : POST/
    > Set up the URL : http://10.200.131.25:8998/batches
