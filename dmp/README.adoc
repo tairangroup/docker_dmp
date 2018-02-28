@@ -162,10 +162,10 @@ usage batch session :
    		 "-c","visit"
    	],
    	"driverMemory": "512M",
-   	"driverCores": 2,
+   	"driverCores": 1,
    	"executorMemory": "512M",
-   	"executorCores": 2,
-   	"numExecutors": 10
+   	"executorCores": 1,
+   	"numExecutors": 1
    }
 3. Check the status : GET/
    > Set up the URL : http://10.200.131.25:8998/batches/{batchId}/state
