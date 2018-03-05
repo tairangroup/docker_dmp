@@ -10,7 +10,7 @@
 * Hive 2.3.x
 * HBase 1.3.x
 * Phoenix 4.13.x
-* Spark 2.2.x
+* Spark 2.3.x
 * Kylin 2.2.x
 * Livy 0.5.x
 

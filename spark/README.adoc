@@ -6,7 +6,7 @@
 
 * SSH server & client ( Port: 22 User: root Password: 123456 )
 * Hadoop 2.7.x
-* Spark 2.2.x
+* Spark 2.3.x
 
 === Examples
 
