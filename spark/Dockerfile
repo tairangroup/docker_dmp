@@ -18,8 +18,8 @@ RUN echo "export SPARK_HOME=/opt/spark" >> /etc/profile \
  && echo "export PATH=$SPARK_HOME/sbin:$SPARK_HOME/bin:$PATH" >> /etc/profile
 
 # Download spark
-RUN wget -q -O - http://mirrors.tuna.tsinghua.edu.cn/apache/spark/spark-2.2.1/spark-2.2.1-bin-hadoop2.7.tgz  | tar -xzf - -C /opt/ \
- && mv /opt/spark-2.2.1-bin-hadoop2.7 /opt/spark
+RUN wget -q -O - http://mirrors.tuna.tsinghua.edu.cn/apache/spark/spark-2.3.0/spark-2.3.0-bin-hadoop2.7.tgz  | tar -xzf - -C /opt/ \
+ && mv /opt/spark-2.3.0-bin-hadoop2.7 /opt/spark
 
 #COPY spark-2.1.1-bin-hadoop2.7.tgz /opt/
 #RUN tar -xzf /opt/spark-2.1.1-bin-hadoop2.7.tgz -C /opt/
